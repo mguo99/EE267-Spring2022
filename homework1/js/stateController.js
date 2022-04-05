@@ -160,8 +160,13 @@ var StateController = function ( dispParams ) {
 	function computeMovement( x, y, previousPosition ) {
 
 		/* TODO (2.1.1.1) Mouse Movement */
-
-		return new THREE.Vector2();
+		var x_movement = Math.abs(x - previousPosition.x);
+		var y_movement = Math.abs(y - previousPosition.y);
+		var movement = new THREE.Vector2(x_movement, y_movement);
+		previousPosition.x = x;
+		previousPosition.y = y;
+		//return new THREE.Vector2();
+		return movement;
 
 	}
 
@@ -185,6 +190,9 @@ var StateController = function ( dispParams ) {
 		 * (2.1.1.2) Mapping Mouse Movement to Matrix Parameters
 		 * (2.1.2) Model Rotation
 		 */
+		this.state.modelTranslation.x += movement.x		 
+		this.state.modelTranslation.y += movement.y
+
 
 		var ctrlKey = e.metaKey // for Mac's command key
 			|| ( navigator.platform.toUpperCase().indexOf( "MAC" ) == - 1
