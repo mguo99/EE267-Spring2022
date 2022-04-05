@@ -190,9 +190,6 @@ var StateController = function ( dispParams ) {
 		 * (2.1.1.2) Mapping Mouse Movement to Matrix Parameters
 		 * (2.1.2) Model Rotation
 		 */
-		this.state.modelTranslation.x += movement.x		 
-		this.state.modelTranslation.y += movement.y
-
 
 		var ctrlKey = e.metaKey // for Mac's command key
 			|| ( navigator.platform.toUpperCase().indexOf( "MAC" ) == - 1
@@ -200,12 +197,13 @@ var StateController = function ( dispParams ) {
 
 		// Check if the shift-key is pressed
 		if ( e.shiftKey && ! ctrlKey ) {
-
 			// XY translation
+			this.state.modelTranslation.x += movement.x;	 
+			this.state.modelTranslation.y += movement.y;
 
 		} else if ( ! e.shiftKey && ctrlKey ) {
-
 			// Z translation
+			this.state.modelTranslation.z += movement.y;
 
 
 		} else {
