@@ -28,7 +28,7 @@
 var screenDiagonal = 13.3;
 
 // The valus should be specified in [mm].
-var	distanceScreenViewer = 700.0;
+var	distanceScreenViewer = 800.0;
 
 var dispParams = new DisplayParameters( distanceScreenViewer, screenDiagonal );
 
