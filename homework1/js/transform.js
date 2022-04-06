@@ -79,18 +79,23 @@ var MVPmat = function ( dispParams ) {
 		var center = state.viewerTarget;
 		var eye = state.viewerPosition;
 		var up = new THREE.Vector3( 0, 1, 0 );
+
 		var z_c_temp = new THREE.Vector3().subVectors( eye, center );
-		console.log("z_c_temp: z_c_temp");
+		console.log('z_c_temp:' z_c_temp);
 		var z_c = z_c_temp.normalize();
-		console.log("z_c: z_c");
+		console.log('z_c:' z_c);
+
 		var x_c_temp = new THREE.Vector3().crossVectors( up, z_c );
 		var x_c = x_c_temp.normalize();
+
 		var y_c = new THREE.Vector3().crossVectors( z_c, x_c );
+
 		var rotationMatrix = new THREE.Matrix4().set(
 			x_c.x, x_c.y, x_c.z, 0,
 			y_c.x, y_c.y, y_c.z, 0,
 			z_c.x, z_c.y, z_c.z, 0,
 			0, 0, 0, 1 );
+		
 		var translationMatrix = THREE.Matrix4().set(
 			1, 0, 0, -eye.x,
 			0, 1, 0, -eye.y,
