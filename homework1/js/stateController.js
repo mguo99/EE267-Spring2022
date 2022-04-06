@@ -199,7 +199,7 @@ var StateController = function ( dispParams ) {
 		if ( e.shiftKey && ! ctrlKey ) {
 			// XY translation
 			_this.state.modelTranslation.x += movement.x;	 
-			_this.state.modelTranslation.y += movement.y;
+			_this.state.modelTranslation.y -= movement.y;
 
 		} else if ( ! e.shiftKey && ctrlKey ) {
 			// Z translation
