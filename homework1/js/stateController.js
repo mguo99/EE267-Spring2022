@@ -161,7 +161,7 @@ var StateController = function ( dispParams ) {
 
 		/* TODO (2.1.1.1) Mouse Movement */
 		var x_movement = previousPosition.x - x;
-		var y_movement = previousPosition.y - y;
+		var y_movement = y - previousPosition.y;
 		var movement = new THREE.Vector2(x_movement, y_movement);
 		previousPosition.x = x;
 		previousPosition.y = y;
