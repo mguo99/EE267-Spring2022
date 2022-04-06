@@ -49,7 +49,7 @@ var MVPmat = function ( dispParams ) {
 		var rotationMatrix = new THREE.Matrix4();
 		rotationMatrix.makeRotationX(state.modelRotation.x * (Math.PI/180));
 		rotationMatrix.makeRotationY(state.modelRotation.y * (Math.PI/180));
-		var matrix = new THREE.Matrix4().multiplyMatrices(rotationMatrix, translationMatrix);
+		var matrix = new THREE.Matrix4().multiplyMatrices(translationMatrix, rotationMatrix);
 		return matrix;
 		/* TODO (2.1.1.3) Matrix Update / (2.1.2) Model Rotation  */
 	}
