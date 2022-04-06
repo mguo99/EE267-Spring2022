@@ -73,7 +73,9 @@ var MVPmat = function ( dispParams ) {
 		//var eye = new THREE.Vector3( state.viewerPosition.x, state.viewerPosition.y, state.viewerPosition.z );
 		var up = new THREE.Vector3( 0, 1, 0 );
 		var z_c = new THREE.Vector3().subVectors( eye, center );
+		console.log("z_c: zc");
 		z_c.normalize();
+		console.log("z_c: zc");
 		//z_c.divideScalar( Math.sqrt( z_c.x * z_c.x + z_c.y * z_c.y + z_c.z * z_c.z ) );	
 		var x_c = new THREE.Vector3().crossVectors( up, z_c );
 		x_c.normalize();
