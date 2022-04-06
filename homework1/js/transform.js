@@ -50,8 +50,12 @@ var MVPmat = function ( dispParams ) {
 		var rotationYMatrix = new THREE.Matrix4();
 		rotationXMatrix.makeRotationX(state.modelRotation.x * (Math.PI/180));
 		rotationYMatrix.makeRotationY(state.modelRotation.y * (Math.PI/180));
-		var rotationMatrices = new THREE.Matrix4().multiplyMatrices(rotationXMatrix, rotationYMatrix);
-		var matrix = new THREE.Matrix4().multiplyMatrices(translationMatrix, rotationMatrices);
+		var matrix = new THREE.Matrix4()
+		if ( state.modelRotation.x  > state.modelRotation.y ) {
+			matrix.multiplyMatrices(translationMatrix, rotationXMatrix);
+		} else {
+			matrix.multiplyMatrices(translationMatrix, rotationYMatrix);
+		}
 		return matrix;
 		/* TODO (2.1.1.3) Matrix Update / (2.1.2) Model Rotation  */
 	}
