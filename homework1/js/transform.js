@@ -90,7 +90,7 @@ var MVPmat = function ( dispParams ) {
 		return new THREE.Matrix4().set(
 			1, 0, 0, 0,
 			0, 1, 0, 0,
-			0, 0, 1, 800,
+			0, 0, 1, -800,
 			0, 0, 0, 1 );
 	}
 
