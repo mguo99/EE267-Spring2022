@@ -87,7 +87,7 @@ var MVPmat = function ( dispParams ) {
 			0, 0, 0, 1 );
 		return new THREE.Matrix4().multiplyMatrices( rotationMatrix, translationMatrix );
 		*/
-		return new THREE.Matrix3().set(
+		return new THREE.Matrix4().set(
 			1, 0, 0, 0,
 			0, 1, 0, 0,
 			0, 0, 1, 800,
