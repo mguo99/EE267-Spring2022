@@ -81,9 +81,9 @@ var MVPmat = function ( dispParams ) {
 		var up = new THREE.Vector3( 0, 1, 0 );
 
 		var z_c_temp = new THREE.Vector3().subVectors( eye, center );
-		console.log('z_c_temp:' z_c_temp);
+		//console.log('z_c_temp:' z_c_temp);
 		var z_c = z_c_temp.normalize();
-		console.log('z_c:' z_c);
+		//console.log('z_c:' z_c);
 
 		var x_c_temp = new THREE.Vector3().crossVectors( up, z_c );
 		var x_c = x_c_temp.normalize();
@@ -95,7 +95,7 @@ var MVPmat = function ( dispParams ) {
 			y_c.x, y_c.y, y_c.z, 0,
 			z_c.x, z_c.y, z_c.z, 0,
 			0, 0, 0, 1 );
-		
+
 		var translationMatrix = THREE.Matrix4().set(
 			1, 0, 0, -eye.x,
 			0, 1, 0, -eye.y,
