@@ -67,7 +67,7 @@ var MVPmat = function ( dispParams ) {
 
 		/* TODO (2.2.3) Implement View Transform */
 
-		var center = new THREE.Vector3( state.viewerTarget.x, state.viewerTarget.y, state.viewerTarget.z );
+		/*var center = new THREE.Vector3( state.viewerTarget.x, state.viewerTarget.y, state.viewerTarget.z );
 		var eye = new THREE.Vector3( state.viewerPosition.x, state.viewerPosition.y, state.viewerPosition.z );
 		var up = new THREE.Vector3( 0, 1, 0 );
 		var z_c = new THREE.Vector3().subVectors( eye, center );
@@ -86,7 +86,12 @@ var MVPmat = function ( dispParams ) {
 			0, 0, 1, -eye.z,
 			0, 0, 0, 1 );
 		return new THREE.Matrix4().multiplyMatrices( rotationMatrix, translationMatrix );
-
+		*/
+		return new THREE.Matrix3().set(
+			1, 0, 0, 0,
+			0, 1, 0, 0,
+			0, 0, 1, 800,
+			0, 0, 0, 1 );
 	}
 
 	// A function to compute a perspective projection matrix based on the
