@@ -70,10 +70,10 @@ var MVPmat = function ( dispParams ) {
 		var center = new THREE.Vector3( state.viewerTarget.x, state.viewerTarget.y, state.viewerTarget.z );
 		var eye = new THREE.Vector3( state.viewerPosition.x, state.viewerPosition.y, state.viewerPosition.z );
 		var up = new THREE.Vector3( 0, 1, 0 );
-		var diff = new THREE.Vector3().subVectors( eye, center );
-		var z_c = diff / Math.sqrt( diff.x * diff.x + diff.y * diff.y + diff.z * diff.z );
-		var cross = new THREE.Vector3().crossVectors( up, z_c );
-		var x_c = cross / Math.sqrt( cross.x * cross.x + cross.y * cross.y + cross.z * cross.z );
+		var z_c = new THREE.Vector3().subVectors( eye, center );
+		z_c.divideScalar( Math.sqrt( z_c.x * z_c.x + z_c.y * z_c.y + z_c.z * z_c.z ) );	
+		var x_c = new THREE.Vector3().crossVectors( up, z_c );
+		x_c.divideScalar( Math.sqrt( x_c.x * x_c.x + x_c.y * x_c.y + x_c.z * x_c.z ) );
 		var y_c = new THREE.Vector3().crossVectors( z_c, x_c );
 		var rotationMatrix = new THREE.Matrix4().set(
 			x_c.x, x_c.y, x_c.z, 0,
