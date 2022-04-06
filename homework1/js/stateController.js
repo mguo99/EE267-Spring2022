@@ -264,11 +264,13 @@ var StateController = function ( dispParams ) {
 		if ( ! ctrlKey ) {
 
 			// XY translation
+			_this.state.viewerTarget.x += movement.x;
+			_this.state.viewerTarget.y -= movement.y;
 
 		} else {
 
 			// Z translation
-
+			_this.state.viewerTarget.z -= movement.y
 		}
 
 	}
