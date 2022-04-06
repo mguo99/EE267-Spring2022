@@ -198,12 +198,12 @@ var StateController = function ( dispParams ) {
 		// Check if the shift-key is pressed
 		if ( e.shiftKey && ! ctrlKey ) {
 			// XY translation
-			this.state.modelTranslation.x += movement.x;	 
-			this.state.modelTranslation.y += movement.y;
+			_this.state.modelTranslation.x += movement.x;	 
+			_this.state.modelTranslation.y += movement.y;
 
 		} else if ( ! e.shiftKey && ctrlKey ) {
 			// Z translation
-			this.state.modelTranslation.z += movement.y;
+			_this.state.modelTranslation.z -= movement.y;
 
 
 		} else {
@@ -214,7 +214,7 @@ var StateController = function ( dispParams ) {
 
 	}
 
-
+										
 	// A function to map mouse movements to the viewer position parameter.
 	// This function should update "viewerPosition" in the "state" variable.
 	//
