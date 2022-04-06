@@ -67,13 +67,17 @@ var MVPmat = function ( dispParams ) {
 
 		/* TODO (2.2.3) Implement View Transform */
 
-		/*var center = new THREE.Vector3( state.viewerTarget.x, state.viewerTarget.y, state.viewerTarget.z );
-		var eye = new THREE.Vector3( state.viewerPosition.x, state.viewerPosition.y, state.viewerPosition.z );
+		//var center = new THREE.Vector3( state.viewerTarget.x, state.viewerTarget.y, state.viewerTarget.z );
+		var center = state.viewerTarget;
+		var eye = state.viewerPosition;
+		//var eye = new THREE.Vector3( state.viewerPosition.x, state.viewerPosition.y, state.viewerPosition.z );
 		var up = new THREE.Vector3( 0, 1, 0 );
 		var z_c = new THREE.Vector3().subVectors( eye, center );
-		z_c.divideScalar( Math.sqrt( z_c.x * z_c.x + z_c.y * z_c.y + z_c.z * z_c.z ) );	
+		z_c.normalize();
+		//z_c.divideScalar( Math.sqrt( z_c.x * z_c.x + z_c.y * z_c.y + z_c.z * z_c.z ) );	
 		var x_c = new THREE.Vector3().crossVectors( up, z_c );
-		x_c.divideScalar( Math.sqrt( x_c.x * x_c.x + x_c.y * x_c.y + x_c.z * x_c.z ) );
+		x_c.normalize();
+		//x_c.divideScalar( Math.sqrt( x_c.x * x_c.x + x_c.y * x_c.y + x_c.z * x_c.z ) );
 		var y_c = new THREE.Vector3().crossVectors( z_c, x_c );
 		var rotationMatrix = new THREE.Matrix4().set(
 			x_c.x, x_c.y, x_c.z, 0,
@@ -86,13 +90,13 @@ var MVPmat = function ( dispParams ) {
 			0, 0, 1, -eye.z,
 			0, 0, 0, 1 );
 		return new THREE.Matrix4().multiplyMatrices( rotationMatrix, translationMatrix );
-		*/
+		/*
 		return new THREE.Matrix4().set(
 			1, 0, 0, 0,
 			0, 1, 0, 0,
 			0, 0, 1, -800,
 			0, 0, 0, 1 );
-	}
+	}	*/
 
 	// A function to compute a perspective projection matrix based on the
 	// current state
