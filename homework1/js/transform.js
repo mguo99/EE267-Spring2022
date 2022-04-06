@@ -76,7 +76,7 @@ var MVPmat = function ( dispParams ) {
 		//x_c.divideScalar( Math.sqrt( x_c.x * x_c.x + x_c.y * x_c.y + x_c.z * x_c.z ) );
 
 		
-		/*var center = state.viewerTarget;
+		var center = state.viewerTarget;
 		var eye = state.viewerPosition;
 		var up = new THREE.Vector3( 0, 1, 0 );
 
@@ -104,14 +104,14 @@ var MVPmat = function ( dispParams ) {
 		
 		
 		return new THREE.Matrix4().multiplyMatrices( rotationMatrix, translationMatrix );
-		*/
 		
+		/*
 		return new THREE.Matrix4().set(
 			1, 0, 0, 0,
 			0, 1, 0, 0,
 			0, 0, 1, -800,
 			0, 0, 0, 1 );
-		
+		*/
 	}	
 
 	// A function to compute a perspective projection matrix based on the
