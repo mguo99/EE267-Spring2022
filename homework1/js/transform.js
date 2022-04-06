@@ -53,7 +53,8 @@ var MVPmat = function ( dispParams ) {
 		var matrix = new THREE.Matrix4()
 		if ( state.modelRotation.x  > state.modelRotation.y ) {
 			matrix.multiplyMatrices(translationMatrix, rotationXMatrix);
-		} else {
+		} 
+		if ( state.modelRotation.y  > state.modelRotation.x ) {
 			matrix.multiplyMatrices(translationMatrix, rotationYMatrix);
 		}
 		return matrix;
