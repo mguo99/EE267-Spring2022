@@ -44,22 +44,14 @@ var MVPmat = function ( dispParams ) {
 	// INPUT
 	// state: state of StateController
 	function computeModelTransform( state ) {
-		var translationMatrix = new THREE.Matrix4().makeTranslation(state.modelTranslation.x, 
-			state.modelTranslation.y, state.modelTranslation.z);
+		var translationMatrix = new THREE.Matrix4().makeTranslation( state.modelTranslation.x, 
+			state.modelTranslation.y, state.modelTranslation.z );
 		var rotationXMatrix = new THREE.Matrix4();
 		var rotationYMatrix = new THREE.Matrix4();
-		rotationXMatrix.makeRotationX(state.modelRotation.x * (Math.PI/180));
-		rotationYMatrix.makeRotationY(state.modelRotation.y * (Math.PI/180));
-		var rotationMatrices = new THREE.Matrix4().multiplyMatrices(rotationXMatrix, rotationYMatrix);
-		var matrix = new THREE.Matrix4().multiplyMatrices(translationMatrix, rotationMatrices);
-
-		//if ( state.modelRotation.x  > state.modelRotation.y ) {
-		//	matrix.multiplyMatrices(translationMatrix, rotationXMatrix);
-		//} 
-		//if ( state.modelRotation.y  > state.modelRotation.x ) {
-		//	matrix.multiplyMatrices(translationMatrix, rotationYMatrix);
-		//}
-
+		rotationXMatrix.makeRotationX( state.modelRotation.x * ( Math.PI / 180 ) );
+		rotationYMatrix.makeRotationY( state.modelRotation.y * ( Math.PI / 180 ) );
+		var rotationMatrices = new THREE.Matrix4().multiplyMatrices( rotationXMatrix, rotationYMatrix );
+		var matrix = new THREE.Matrix4().multiplyMatrices( translationMatrix, rotationMatrices );
 		return matrix;
 		/* TODO (2.1.1.3) Matrix Update / (2.1.2) Model Rotation  */
 	}
@@ -75,11 +67,25 @@ var MVPmat = function ( dispParams ) {
 
 		/* TODO (2.2.3) Implement View Transform */
 
-		return new THREE.Matrix4().set(
-			1, 0, 0, 0,
-			0, 1, 0, 0,
-			0, 0, 1, - 800,
+		var center = new THREE.Vector3( state.viewerTarget.x, state.viewerTarget.y, state.viewerTarget.z );
+		var eye = new THREE.Vector3( state.viewerPosition.x, state.viewerPosition.y, state.viewerPosition.z );
+		var up = new THREE.Vector3( 0, 1, 0 );
+		var diff = eye - center;
+		var z_c = diff / Math.sqrt( diff.x * diff.x + diff.y * diff.y + diff.z * diff.z );
+		var cross = Math.cross( up, z );
+		var x_c = cross / Math.sqrt( cross.x * cross.x + cross.y * cross.y + cross.z * cross.z );
+		var y_c = Math.cross( z, x );
+		var rotationMatrix = new THREE.Matrix4().set(
+			x_c.x, x_c.y, x_c.z, 0,
+			y_c.x, y_c.y, y_c.z, 0,
+			z_c.x, z_c.y, z_c.z, 0,
 			0, 0, 0, 1 );
+		var translationMatrix = THREE.Matrix4().set(
+			1, 0, 0, -eye.x,
+			0, 1, 0, -eye.y,
+			0, 0, 1, -eye.z,
+			0, 0, 0, 1 );
+		return new THREE.Matrix4().multiplyMatrices( rotationMatrix, translationMatrix );
 
 	}
 
