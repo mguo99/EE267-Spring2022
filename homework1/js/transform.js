@@ -46,10 +46,12 @@ var MVPmat = function ( dispParams ) {
 	function computeModelTransform( state ) {
 		var translationMatrix = new THREE.Matrix4().makeTranslation(state.modelTranslation.x, 
 			state.modelTranslation.y, state.modelTranslation.z);
-		var rotationMatrix = new THREE.Matrix4();
-		rotationMatrix.makeRotationX(state.modelRotation.x * (Math.PI/180));
-		rotationMatrix.makeRotationY(state.modelRotation.y * (Math.PI/180));
-		var matrix = new THREE.Matrix4().multiplyMatrices(rotationMatrix, translationMatrix);
+		var rotationXMatrix = new THREE.Matrix4();
+		var rotationYMatrix = new THREE.Matrix4();
+		rotationXMatrix.makeRotationX(state.modelRotation.x * (Math.PI/180));
+		rotationYMatrix.makeRotationY(state.modelRotation.y * (Math.PI/180));
+		var rotationMatrices = new THREE.Matrix4().multiplyMatrices(rotationXMatrix, rotationYMatrix);
+		var matrix = new THREE.Matrix4().multiplyMatrices(rotationMatrices, translationMatrix);
 		return matrix;
 		/* TODO (2.1.1.3) Matrix Update / (2.1.2) Model Rotation  */
 	}
