@@ -209,7 +209,7 @@ var StateController = function ( dispParams ) {
 		} else {
 			// Rotation
 			_this.state.modelRotation.x += movement.y
-			_this.state.modelRotation.y += movement.x
+			_this.state.modelRotation.y -= movement.x
 		}
 
 	}
@@ -233,10 +233,13 @@ var StateController = function ( dispParams ) {
 		if ( ! ctrlKey ) {
 
 			// XY translation
+			_this.state.viewerPosition.x += movement.x;
+			_this.state.viewerPosition.y -= movement.y;
 
 		} else {
 
 			// Z translation
+			_this.state.viewerPosition.z -= movement.y
 
 		}
 
