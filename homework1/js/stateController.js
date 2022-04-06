@@ -208,7 +208,7 @@ var StateController = function ( dispParams ) {
 
 		} else {
 			// Rotation
-			_this.state.modelRotation.y += movement.x
+			_this.state.modelRotation.y -= movement.x
 			_this.state.modelRotation.x += movement.y
 
 		}
