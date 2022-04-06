@@ -47,14 +47,11 @@ var MVPmat = function ( dispParams ) {
 		var translationMatrix = new THREE.Matrix4().makeTranslation(state.modelTranslation.x, 
 			state.modelTranslation.y, state.modelTranslation.z);
 		var rotationMatrix = new THREE.Matrix4();
-		//rotationMatrix.makeRotationX(state.modelRotation.y * (Math.PI/180));
-		//rotationMatrix.makeRotationY(state.modelRotation.x * (Math.PI/180));
-		//return rotationMatrix * translationMatrix;
-		return translationMatrix;
-	
-
+		rotationMatrix.makeRotationX(state.modelRotation.y * (Math.PI/180));
+		rotationMatrix.makeRotationY(state.modelRotation.x * (Math.PI/180));
+		var matrix = new THREE.Matrix4().multiplyMatrices(rotationMatrix, translationMatrix);
+		return matrix;
 		/* TODO (2.1.1.3) Matrix Update / (2.1.2) Model Rotation  */
-
 	}
 
 	// A function to compute a view matrix based on the current state
