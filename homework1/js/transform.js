@@ -76,7 +76,7 @@ var MVPmat = function ( dispParams ) {
 		//x_c.divideScalar( Math.sqrt( x_c.x * x_c.x + x_c.y * x_c.y + x_c.z * x_c.z ) );
 
 		
-		var center = state.viewerTarget;
+		/*var center = state.viewerTarget;
 		var eye = state.viewerPosition;
 		var up = new THREE.Vector3( 0, 1, 0 );
 
@@ -90,6 +90,8 @@ var MVPmat = function ( dispParams ) {
 
 		var y_c = new THREE.Vector3().crossVectors( z_c, x_c );
 
+		console console.log();
+
 		var rotationMatrix = new THREE.Matrix4().set(
 			x_c.x, x_c.y, x_c.z, 0,
 			y_c.x, y_c.y, y_c.z, 0,
@@ -101,9 +103,40 @@ var MVPmat = function ( dispParams ) {
 			0, 1, 0, -eye.y,
 			0, 0, 1, -eye.z,
 			0, 0, 0, 1 );
+		*/
+
+		var eye = state.viewerPosition;
+		var center = state.viewerTarget;
+		var zc_temp = new THREE.Vector3().subVectors(eye,center);
+
+		var zc = zc_temp.normalize();
+
+
+		var up = new THREE.Vector3(0,1,0);
+
+		var xc_temp = new THREE.Vector3().crossVectors(up,zc)
+
+		var xc = xc_temp.normalize();
+
+		var yc = new THREE.Vector3().crossVectors(zc,xc);
+
+		var R_matrix = new THREE.Matrix4().set(
+			xc.x, xc.y, xc.z, 0,
+			yc.x, yc.y, yc.z, 0,
+			zc.x, zc.y, zc.z, 0,
+			0, 0, 0, 1);
+
+
+		var T_matrix = new THREE.Matrix4().set(
+			1, 0, 0, -eye.x,
+			0, 1, 0, -eye.y,
+			0, 0, 1, -eye.z,
+			0, 0, 0, 1);
+
+		return new THREE.Matrix4().multiplyMatrices(R_matrix,T_matrix);
 		
 		
-		return new THREE.Matrix4().multiplyMatrices( rotationMatrix, translationMatrix );
+		//return new THREE.Matrix4().multiplyMatrices( rotationMatrix, translationMatrix );
 		
 		/*
 		return new THREE.Matrix4().set(
